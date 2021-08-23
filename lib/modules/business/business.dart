@@ -23,7 +23,8 @@ class Business extends StatelessWidget {
               separatorBuilder:(context,index) =>  SizedBox(
                 height: 10.0,
               ),
-              itemCount: 10
+              //itemCount: NewsApp_Cubit.get(context).business.length,
+            itemCount: business_NewsList.length,
           ),
           fallback: (context) => Center(child: CircularProgressIndicator()),
         ) ;

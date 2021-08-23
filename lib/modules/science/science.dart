@@ -1,19 +1,34 @@
 
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/shared/component/components.dart';
+import 'package:news_app/shared/cubit/cubit.dart';
+import 'package:news_app/shared/cubit/states.dart';
 
 class Science extends StatelessWidget {
   const Science({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center (
-      child: Text(
-        'this Widget for Science News',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 20.0,
-        ),
-      ),
+    return BlocConsumer<NewsApp_Cubit,NewsApp_States>(
+      listener:(context ,state){},
+      builder:(context ,state){
+        var science_NewsList = NewsApp_Cubit.get(context).science;
+        return ConditionalBuilder(
+          condition: state is! getNews_Science_Loading_State,
+          builder: (context) =>ListView.separated(
+            physics:BouncingScrollPhysics(),
+            itemBuilder: (context,index) => Item_Of_News(science_NewsList[index]),
+            separatorBuilder:(context,index) =>  SizedBox(
+              height: 10.0,
+            ),
+            //itemCount: NewsApp_Cubit.get(context).science.length,
+            itemCount: science_NewsList.length,
+          ),
+          fallback: (context) => Center(child: CircularProgressIndicator()),
+        ) ;
+      },
     );
   }
 }
