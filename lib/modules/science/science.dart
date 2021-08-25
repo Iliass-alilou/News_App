@@ -15,7 +15,7 @@ class Science extends StatelessWidget {
       listener:(context ,state){},
       builder:(context ,state){
         var science_NewsList = NewsApp_Cubit.get(context).science;
-        return Item_Builder_Conditional(science_NewsList);
+        return Item_Builder_Conditional(science_NewsList,context);
       },
     );
   }

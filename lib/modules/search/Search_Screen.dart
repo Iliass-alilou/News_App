@@ -44,7 +44,7 @@ class Search_Screen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child:Item_Builder_Conditional(search_list),
+                  child:Item_Builder_Conditional(search_list,context,isSearch:true,),
                 ),
               ],
             ),

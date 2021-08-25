@@ -89,8 +89,8 @@ Widget separator_Items() => Padding(
   ),
 );
 
-//Build all Items in My list
-Widget Item_Builder_Conditional(List list) => ConditionalBuilder(
+//Build all Items in My list conditional
+Widget Item_Builder_Conditional(list ,context , {isSearch = false} ) => ConditionalBuilder(
   condition: list.length>0,
   builder: (context) =>ListView.separated(
     physics:BouncingScrollPhysics(),
@@ -98,7 +98,7 @@ Widget Item_Builder_Conditional(List list) => ConditionalBuilder(
     separatorBuilder:(context,index) =>  separator_Items(),
     itemCount: list.length,
   ),
-  fallback: (context) => Center(child: CircularProgressIndicator()),
+  fallback: (context) => isSearch ? Container(): Center(child: CircularProgressIndicator()),
 ) ;
 
 //for Navigation form a screen to an other
