@@ -20,10 +20,8 @@ class Sport extends StatelessWidget {
           condition:sport_NewsList.length>0 ,
           builder: (context) =>ListView.separated(
             physics:BouncingScrollPhysics(),
-            itemBuilder: (context,index) => Item_Of_News(sport_NewsList[index]),
-            separatorBuilder:(context,index) =>  SizedBox(
-              height: 10.0,
-            ),
+            itemBuilder: (context,index) => Item_Of_News(sport_NewsList[index],context),
+            separatorBuilder:(context,index) =>  separator_Items(),
             //itemCount: NewsApp_Cubit.get(context).sports.length,
             itemCount: sport_NewsList.length,
           ),

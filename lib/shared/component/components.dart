@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-Widget Item_Of_News(article) => Padding(
+Widget Item_Of_News(article,context) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Row(
     children: [
@@ -31,11 +31,8 @@ Widget Item_Of_News(article) => Padding(
               Expanded(
                 child: Text(
                   '${article['title']}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 4,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -43,7 +40,7 @@ Widget Item_Of_News(article) => Padding(
                 '${article['publishedAt']}',
                 style: TextStyle(
                   fontSize: 16.0,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
@@ -51,5 +48,27 @@ Widget Item_Of_News(article) => Padding(
         ),
       ),
     ],
+  ),
+);
+
+Widget separator_Items() => Padding(
+  padding: const EdgeInsets.only(
+    top: 10.0,
+    bottom: 10.0,
+    left: 20.0,
+    right: 20.0
+  ),
+  child:   Container(
+
+    height: 1.5,
+
+    width: 120.0,
+
+    decoration: BoxDecoration(
+
+      color: Colors.black
+
+    ),
+
   ),
 );

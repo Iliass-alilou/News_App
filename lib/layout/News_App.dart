@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/shared/AppCubit/cubit.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
@@ -11,7 +12,7 @@ class NewsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=> NewsApp_Cubit()..getBusiness(),
+      create: (context)=> NewsApp_Cubit()..getBusiness()..getSciences()..getSports(),
       child: BlocConsumer<NewsApp_Cubit,NewsApp_States>(
           listener: (context , state) {},
           builder: (context , state) {
@@ -25,6 +26,14 @@ class NewsApp extends StatelessWidget {
                   IconButton(
                       onPressed: (){},
                       icon:Icon(Icons.search)
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        App_Cubit.get(context).ChangeMood();
+                      },
+                      icon:Icon(
+                          Icons.brightness_4_outlined,
+                      )
                   ),
                 ],
               ),
