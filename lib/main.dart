@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/shared/AppCubit/cubit.dart';
 import 'package:news_app/shared/AppCubit/states.dart';
+import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/network/local/cache_helper.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
 import 'package:news_app/shared/observer.dart';
@@ -40,10 +41,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => App_Cubit()..ChangeMood(
-        fromShared: isDark,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NewsApp_Cubit()..getBusiness()..getSciences()..getSports(),),
+        BlocProvider(create: (context) => App_Cubit()..ChangeMood(fromShared: isDark,),
+    ),
+
+      ],
+
       child: BlocConsumer<App_Cubit,App_States>(
         listener: (context , state){},
         builder: (context , state){
@@ -70,6 +75,10 @@ class MyApp extends StatelessWidget {
                 actionsIconTheme: IconThemeData(
                   color: Colors.black,
                 ),
+                iconTheme: IconThemeData(
+                    color: Colors.black,
+                ),
+
               ),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
                 selectedItemColor: Colors.deepOrange,

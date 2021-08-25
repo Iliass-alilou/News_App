@@ -41,3 +41,16 @@ class getNews_Science_Error_State  extends NewsApp_States{
   final String error;
   getNews_Science_Error_State({required this.error});
 }
+
+
+//for Search
+
+class getNews_Search_Loading_State extends NewsApp_States{}
+
+class getNews_Search_Success_State  extends NewsApp_States{}
+
+class getNews_Search_Error_State  extends NewsApp_States{
+
+  final String error;
+  getNews_Search_Error_State({required this.error});
+}

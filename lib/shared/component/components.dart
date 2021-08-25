@@ -1,4 +1,5 @@
 
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 
 Widget Item_Of_News(article,context) => Padding(
@@ -71,4 +72,23 @@ Widget separator_Items() => Padding(
     ),
 
   ),
+);
+
+Widget Item_Builder_Conditional(List list) => ConditionalBuilder(
+  condition: list.length>0,
+  builder: (context) =>ListView.separated(
+    physics:BouncingScrollPhysics(),
+    itemBuilder: (context,index) => Item_Of_News(list[index],context),
+    separatorBuilder:(context,index) =>  separator_Items(),
+    itemCount: list.length,
+  ),
+  fallback: (context) => Center(child: CircularProgressIndicator()),
+) ;
+
+
+void NavigateTo(context,Widget) => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => Widget,
+    ),
 );

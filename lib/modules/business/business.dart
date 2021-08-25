@@ -15,16 +15,7 @@ class Business extends StatelessWidget {
       listener:(context ,state){},
       builder:(context ,state){
         var business_NewsList = NewsApp_Cubit.get(context).business;
-        return ConditionalBuilder(
-          condition: business_NewsList.length>0,
-          builder: (context) =>ListView.separated(
-              physics:BouncingScrollPhysics(),
-              itemBuilder: (context,index) => Item_Of_News(business_NewsList[index],context),
-              separatorBuilder:(context,index) =>  separator_Items(),
-              itemCount: business_NewsList.length,
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-        ) ;
+        return Item_Builder_Conditional(business_NewsList) ;
       },
     );
   }

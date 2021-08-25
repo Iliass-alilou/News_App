@@ -15,18 +15,7 @@ class Sport extends StatelessWidget {
       listener:(context ,state){},
       builder:(context ,state){
         var sport_NewsList = NewsApp_Cubit.get(context).sports;
-        return ConditionalBuilder(
-          //condition: state is! getNews_Sports_Loading_State,
-          condition:sport_NewsList.length>0 ,
-          builder: (context) =>ListView.separated(
-            physics:BouncingScrollPhysics(),
-            itemBuilder: (context,index) => Item_Of_News(sport_NewsList[index],context),
-            separatorBuilder:(context,index) =>  separator_Items(),
-            //itemCount: NewsApp_Cubit.get(context).sports.length,
-            itemCount: sport_NewsList.length,
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-        ) ;
+        return Item_Builder_Conditional(sport_NewsList) ;
       },
     );
   }

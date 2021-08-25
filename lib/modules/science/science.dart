@@ -15,17 +15,7 @@ class Science extends StatelessWidget {
       listener:(context ,state){},
       builder:(context ,state){
         var science_NewsList = NewsApp_Cubit.get(context).science;
-        return ConditionalBuilder(
-          condition: science_NewsList.length>0,
-          builder: (context) =>ListView.separated(
-            physics:BouncingScrollPhysics(),
-            itemBuilder: (context,index) => Item_Of_News(science_NewsList[index], context),
-            separatorBuilder:(context,index) =>  separator_Items(),
-            //itemCount: NewsApp_Cubit.get(context).science.length,
-            itemCount: science_NewsList.length,
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-        ) ;
+        return Item_Builder_Conditional(science_NewsList);
       },
     );
   }
